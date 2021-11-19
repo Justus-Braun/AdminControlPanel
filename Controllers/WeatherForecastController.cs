@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using AdminControlPanel.Database;
 
 namespace AdminControlPanel.Controllers
 {
@@ -21,6 +22,7 @@ namespace AdminControlPanel.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
+            Console.WriteLine(DbLoger.All()[0].Identifer);
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),

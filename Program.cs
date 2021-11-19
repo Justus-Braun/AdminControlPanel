@@ -1,6 +1,12 @@
+using AdminControlPanel.Database;
+using LinqToDB.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+#pragma warning disable ASP0000 // Do not call 'IServiceCollection.BuildServiceProvider' in 'ConfigureServices'
+MySettings.Conf = builder.Services.BuildServiceProvider().GetService<IConfiguration>().GetValue<string>("Database");
+#pragma warning restore ASP0000 // Do not call 'IServiceCollection.BuildServiceProvider' in 'ConfigureServices'
+DataConnection.DefaultSettings = new MySettings();
 
 builder.Services.AddControllersWithViews();
 

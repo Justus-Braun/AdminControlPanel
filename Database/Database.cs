@@ -8,5 +8,7 @@ namespace AdminControlPanel.Database
         public DbLoger() : base("loger") { }
 
         public ITable<User> User => GetTable<User>();
+
+        public ITable<Characters> Characters => GetTable<Characters>();
     }
 }

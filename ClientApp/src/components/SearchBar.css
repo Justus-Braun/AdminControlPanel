@@ -1,0 +1,33 @@
+h1, p {
+    font-family: Lato;
+  }
+  
+  .user {
+    list-style: none;
+    animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+  
+  .removed {
+    animation: fade-out 1s ease-out both;
+    display: none;
+  }
+  
+  @keyframes slide-in-bottom {
+    0% {
+      transform: translateY(1000px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fade-out {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }

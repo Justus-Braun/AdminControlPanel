@@ -21,7 +21,7 @@ namespace AdminControlPanel.Database.Models
         public string LastName { get; set; }
 
         [Column(Name = "dataofbirth")]
-        public DateOnly Birthday { get; set; }
+        public DateTime Birthday { get; set; }
 
         [Column(Name = "money")]
         public int Money { get; set; }

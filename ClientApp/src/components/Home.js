@@ -27,8 +27,17 @@ export class Home extends Component {
         </thead>
         <tbody>
           {users.map((user) => (
-            <tr className={(user.firstName+user.lastName).toLowerCase().indexOf(this.state.searchValue.toLowerCase()) !== -1 ? 'user' : 'user removed'} key={1}>
+            <tr className={(user.firstName+user.lastName).toLowerCase().indexOf(this.state.searchValue.toLowerCase()) !== -1 ? 'user' : 'user removed'} key={user.id}>
               {Object.keys(user).map(key => 
+                key == 'identifer' ? 
+                <td>
+                  <button onClick={() => {
+                    this.props.history.push("/user/id?identifer="+user.identifer)
+                    this.fetchData("api/user/id?identifer="+user.identifer)
+                    }}>
+                    {user[key]}
+                  </button>
+                </td> : 
                 <td>
                   {user[key]}
                 </td>

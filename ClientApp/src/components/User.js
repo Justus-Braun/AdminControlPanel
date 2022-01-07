@@ -27,7 +27,7 @@ export class User extends Component {
         </thead>
         <tbody>
           {users.map((user) => (
-            <tr className={user.identifer.toLowerCase().indexOf(this.state.searchValue.toLowerCase()) !== -1 ? 'user' : 'user removed'} key={1}>
+            <tr className={user.identifer.toLowerCase().indexOf(this.state.searchValue.toLowerCase()) !== -1 ? 'user' : 'user removed'}>
               {Object.keys(user).map(key => 
                 <td>
                   {user[key]}

@@ -10,10 +10,10 @@ namespace AdminControlPanel.Database.Models
         public int Id { get; set; }
 
         [Column(Name = "source")]
-        public string Source { get; set; }
+        public int Source { get; set; }
 
         [Column(Name = "target")]
-        public string Target { get; set; }
+        public int Target { get; set; }
 
         [Column(Name = "item")]
         public string Item { get; set; }

@@ -23,5 +23,16 @@ namespace AdminControlPanel.Controllers
                 return query.ToArray();
             }
         }
+
+        [HttpGet("id")]
+        public IEnumerable<Characters> GetUser(string identifer)
+        {
+            using (var db = new DbLoger())
+            {
+                var chars = from c in db.Characters where c.Identifer == identifer select c;
+
+                return chars.ToArray();
+            }
+        }
     }
 }

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router';
+import { Route, Switch } from 'react-router';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
-import { FetchData } from './components/FetchData';
-import { Counter } from './components/Counter';
+import { Log } from './components/Log';
+import { User } from './components/User';
+import { UserDetails } from './components/UserDetails';
 
 import './custom.css'
 
@@ -13,9 +14,12 @@ export default class App extends Component {
   render () {
     return (
       <Layout>
-        <Route exact path='/' component={Home} />
-        <Route path='/counter' component={Counter} />
-        <Route path='/fetch-data' component={FetchData} />
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/user' component={User} />
+          <Route exact path='/user/:id' component={UserDetails} />
+          <Route exact path='/log' component={Log} />
+        </Switch>
       </Layout>
     );
   }

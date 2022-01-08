@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import SearchBar from './SearchBar';
 import './SearchBar.css'
 
-export class Home extends Component {
-  static displayName = Home.name;
+export class UserDetails extends Component {
+  static displayName = UserDetails.name;
 
   constructor(props) {
     super(props);
@@ -11,7 +11,7 @@ export class Home extends Component {
   }
 
   componentDidMount() {
-    this.fetchData('api/character/all');
+    this.fetchData('api/user/all');
   }
 
   renderUser(users) {
@@ -27,17 +27,8 @@ export class Home extends Component {
         </thead>
         <tbody>
           {users.map((user) => (
-            <tr className={(user.firstName+user.lastName).toLowerCase().indexOf(this.state.searchValue.toLowerCase()) !== -1 ? 'user' : 'user removed'} key={user.id}>
+            <tr className={user.identifer.toLowerCase().indexOf(this.state.searchValue.toLowerCase()) !== -1 ? 'user' : 'user removed'}>
               {Object.keys(user).map(key => 
-                key == 'identifer' ? 
-                <td>
-                  <button onClick={() => {
-                    this.props.history.push("/user/id?identifer="+user.identifer)
-                    this.fetchData("api/user/id?identifer="+user.identifer)
-                    }}>
-                    {user[key]}
-                  </button>
-                </td> : 
                 <td>
                   {user[key]}
                 </td>
@@ -99,3 +90,6 @@ export class Home extends Component {
     this.setState({ events: data, loading: false });
   }
 }
+
+
+

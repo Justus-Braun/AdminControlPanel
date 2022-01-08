@@ -9,14 +9,8 @@ namespace AdminControlPanel.Database
 
         public ITable<User> User => GetTable<User>();
 
-        public static List<User> All()
-        {
-            using (var db = new DbLoger())
-            {
-                var query = from u in db.User
-                            select u;
-                return query.ToList();
-            }
-        }
+        public ITable<Characters> Characters => GetTable<Characters>();
+
+        public ITable<TransferItem> TransferItems => GetTable<TransferItem>();
     }
 }

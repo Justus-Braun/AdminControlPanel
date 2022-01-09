@@ -5,6 +5,7 @@ import { Home } from './components/Home';
 import { Log } from './components/Log';
 import { User } from './components/User';
 import { UserDetails } from './components/UserDetails';
+import { CharRedirect } from './components/CharRedirect'; 
 
 import './custom.css'
 
@@ -15,9 +16,10 @@ export default class App extends Component {
     return (
       <Layout>
         <Switch>
-          <Route exact path='/' component={Home} />
+          <Route exact path='/' component={Home} />        
+          <Route exact path='/char/id' component={CharRedirect} />  
+          <Route exact path='/user/id' component={UserDetails} />
           <Route exact path='/user' component={User} />
-          <Route exact path='/user/:id' component={UserDetails} />
           <Route exact path='/log' component={Log} />
         </Switch>
       </Layout>

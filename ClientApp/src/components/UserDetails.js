@@ -11,7 +11,7 @@ export class UserDetails extends Component {
   }
 
   componentDidMount() {
-    this.fetchData('api/user/all');
+    this.fetchData('api/user/id?identifer=' + new URLSearchParams(this.props.location.search).get("identifer"));
   }
 
   renderUser(users) {

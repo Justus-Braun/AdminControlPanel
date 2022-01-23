@@ -232,3 +232,4 @@ _Pvt_Extensions
 .fake/
 
 appsettings.Development.json
+.idea/

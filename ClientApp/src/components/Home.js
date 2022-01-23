@@ -29,7 +29,7 @@ export class Home extends Component {
           {users.map((user) => (
             <tr className={(user.firstName+user.lastName).toLowerCase().indexOf(this.state.searchValue.toLowerCase()) !== -1 ? 'user' : 'user removed'} key={user.id}>
               {Object.keys(user).map(key => 
-                key == 'identifer' ? 
+                key === 'identifer' ? 
                 <td>
                   <button onClick={() => {
                     this.props.history.push("/user/id?identifer="+user.identifer)

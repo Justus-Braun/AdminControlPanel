@@ -32,7 +32,7 @@ export class Log extends Component {
           {data.map((log) => (
             <tr className={(log.sourceName+" "+log.targetName+" "+log.data).toLowerCase().indexOf(this.state.searchValue.toLowerCase()) !== -1 ? 'user' : 'user removed'} key={log.id}>
               {Object.keys(log).map(key => 
-                key == 'source' ? 
+                key === 'source' ? 
                 <td>
                   <button onClick={() => {
                     this.props.history.push("/char/id?source="+log.source)

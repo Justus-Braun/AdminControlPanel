@@ -24,61 +24,67 @@ export const  LoginForm = props => {
 }
 */
 
+function CheckUser(obj) {
+    if (obj.name === "tom") {
+        return true;
+    }
+    else {
+        return false;
+    }
+    
+}
+
 export  const LoginForm = props => {
+    
+    const [user, setUser] = useState({name: "", password: ""});
+
+    
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        
+        
+        if (CheckUser(user)) {
+            alert(`logged In: ${user.name}`);
+            /*
+            auth.login(() => {
+                props.history.push("/home");
+            });
+            */
+        }
+        else {
+            alert(`Error: ${user.name}`);
+        }
+        
+    }
     return (
-        <Login {...props}/>
+        <>
+            
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label>Enter your name:
+                            <input
+                                type="text"
+                                value={user.name}
+                                onChange={(e) => setUser({...user, name: e.target.value})}
+                            />
+                        </label>
+                    </div>
+                    <div>
+                        <label>Enter your password:
+                            <input
+                                type="text"
+                                value={user.password}
+                                onChange={(e) => setUser({...user, password: e.target.value})}
+                            />
+                        </label>
+                    </div>
+                    <input type="submit"/>
+                </form>
+            
+        </>
+        
     )    
 }
 
 
 export default LoginForm
-
-function Login() {
-    const [name, setName] = useState("");
-    const [password, setpassword] = useState("");
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        alert(`The name you entered was: ${name}; ${password}`);
-        auth.login(() => {
-            name.props.history.push("/home");
-        })
-    }
-
-    return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Enter your name:
-                        <input
-                            type="text"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                        />
-                    </label>
-                </div>
-                <div>
-                    <label>Enter your password:
-                        <input
-                            type="text"
-                            value={password}
-                            onChange={(e) => setpassword(e.target.value)}
-                        />
-                    </label>
-                </div>                
-            </form>
-            <div>
-                <button
-                    onClick={() => {
-                        auth.login(() => {
-                            props.history.push("/home");
-                        });
-                    }}
-                >
-                    Login
-                </button>
-            </div>
-        </div>
-        
-    )
-}

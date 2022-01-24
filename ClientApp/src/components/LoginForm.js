@@ -1,28 +1,6 @@
 import React, { useState } from 'react';
 import auth from "./../auth";
 
-/*
-export const  LoginForm = props => {    
-    return (
-        <div>
-            <div>
-                <h2>Login</h2>                
-                <div>                    
-                    <button
-                        onClick={() => {
-                            auth.login(() => {
-                                props.history.push("/home");
-                            });
-                        }}
-                    >
-                        Login
-                    </button>
-                </div>
-            </div>
-        </div>
-    )
-}
-*/
 
 function CheckUser(obj) {
     if (obj.name === "tom") {
@@ -87,4 +65,3 @@ export  const LoginForm = props => {
 }
 
 
-export default LoginForm

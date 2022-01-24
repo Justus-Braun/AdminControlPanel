@@ -6,6 +6,7 @@ import { Log } from './components/Log';
 import { User } from './components/User';
 import { UserDetails } from './components/UserDetails';
 import { CharRedirect } from './components/CharRedirect'; 
+import { Admin } from './components/admin'; 
 import { LoginForm } from './components/LoginForm'; 
 import { ProtectedRoute } from './components/protected.route';
 
@@ -29,7 +30,9 @@ export default class App extends Component {
           <ProtectedRoute exact path='/user' component={User} />
           <ProtectedRoute exact path='/log' component={Log} />
           <ProtectedRoute exact path='/login' component={LoginForm} />
+          
           <Route path="*" component={() => "404 NOT FOUND"} />
+          <Route path="/admin" component={Admin} />
         </Switch>
       </Layout>
     );

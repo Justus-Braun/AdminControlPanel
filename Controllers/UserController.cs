@@ -13,7 +13,7 @@ namespace AdminControlPanel.Controllers
         [HttpGet("all")]
         public IEnumerable<UserCharCount> Index()
         {
-            Console.WriteLine("test");
+            Console.WriteLine("Select Users from Database");
             using (var db = new DbLoger())
             {
 

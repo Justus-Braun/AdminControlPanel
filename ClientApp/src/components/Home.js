@@ -29,7 +29,7 @@ export class Home extends Component {
           {users.map((user) => (
             <tr className={(user.firstName+user.lastName).toLowerCase().indexOf(this.state.searchValue.toLowerCase()) !== -1 ? 'user' : 'user removed'} key={user.id}>
               {Object.keys(user).map(key => 
-                key == 'identifer' ? 
+                key === 'identifer' ? 
                 <td>
                   <button onClick={() => {
                     this.props.history.push("/user/id?identifer="+user.identifer)
@@ -50,30 +50,6 @@ export class Home extends Component {
   }
 
   render() {
-    
-    // let contents = this.state.loading
-    //   ? <p><em>Loading...</em></p>
-    //   : this.renderEventsTable(this.state.events);
-
-    let users = [
-      { name: "Jack", id: "1" },
-      { name: "Lisa", id: "2" },
-      { name: "Peter", id: "3" },
-      { name: "Roman", id: "4" },
-      { name: "Sarah", id: "5" },
-      { name: "Eric", id: "6" },
-      { name: "Fiora", id: "7" },
-    ];
-
-  //   let foundUsers = this.saearchValue == undefined ? <ul></ul> : <ul>
-  //   {users.map((user) => {
-  //     // we can use it as like
-  //     let classname = user.name.toLowerCase().indexOf(this.searchValue.toLowerCase()) !== -1 ? 'user' : 'user removed';
-  //     return <li className={classname} key={user.id}>
-  //       {user.name}
-  //     </li>
-  //   })}
-  // </ul>
 
     let content = this.state.loading
     ? <p><em>Loading...</em></p>

@@ -1,4 +1,3 @@
-import { data } from 'jquery';
 import React, { Component } from 'react';
 
 export class CharRedirect extends Component {
@@ -25,12 +24,9 @@ export class CharRedirect extends Component {
   }
 
   async fetchData(fetchDomain) {
-    console.log(fetchDomain)
     this.setState({ loading: true })
     const response = await fetch(fetchDomain);
-    console.log(response);
     const data = await response.json();
-    console.log(data);
     this.setState({ events: data, loading: false });
   }
 }

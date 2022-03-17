@@ -6,7 +6,9 @@ import { Log } from './components/Log';
 import { User } from './components/AllUser';
 import { UserDetails } from './components/user/UserDetails';
 import { CharRedirect } from './components/char/CharRedirect'; 
-
+import { Settings } from './components/settings/Settings';
+import { Login } from './components/login/Login';
+ 
 import './custom.css'
 
 export default class App extends Component {
@@ -21,6 +23,8 @@ export default class App extends Component {
           <Route exact path='/user/id' component={UserDetails} />
           <Route exact path='/user' component={User} />
           <Route exact path='/log' component={Log} />
+          <Route exact path='/settings' component={Settings} />
+          <Route exact path='/login' component={Login} />
         </Switch>
       </Layout>
     );

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import SearchBar from '../SearchBar';
-import './../SearchBar.css';
+import SearchBar from './../utils/SearchBar';
+import './../utils/SearchBar.css';
 import UserStats from './UserStats';
 
 export class UserDetails extends Component {

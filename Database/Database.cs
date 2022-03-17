@@ -12,5 +12,7 @@ namespace AdminControlPanel.Database
         public ITable<Characters> Characters => GetTable<Characters>();
 
         public ITable<TransferItem> TransferItems => GetTable<TransferItem>();
+
+        public ITable<Accounts> Accounts => GetTable<Accounts>();
     }
 }

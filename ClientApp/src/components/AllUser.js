@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import SearchBar from './SearchBar';
-import './SearchBar.css'
+import SearchBar from './utils/SearchBar';
+import './utils/SearchBar.css'
 
 export class User extends Component {
   static displayName = User.name;

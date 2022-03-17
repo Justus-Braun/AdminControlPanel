@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import SearchBar from './SearchBar';
-import './SearchBar.css'
+import SearchBar from './utils/SearchBar';
+import './utils/SearchBar.css'
 
 export class Home extends Component {
   static displayName = Home.name;
@@ -69,6 +69,9 @@ export class Home extends Component {
     console.log(fetchDomain)
     this.setState({ loading: true })
     const response = await fetch(fetchDomain);
+    if (response.status === 400) {
+      this.props.history.push("login");
+    }
     console.log(response);
     const data = await response.json();
     console.log(data);

@@ -9,11 +9,11 @@ namespace AdminControlPanel.Controllers
     [ApiController]
     public class CharacterController : Controller
     {
-        [HttpGet("all")]
+        [Route("all")]
         public IActionResult Index()
         {
             if (!AuthenticationHandler.IsAutherised(Request))
-                return BadRequest();
+                return Ok(new { message = "login" });
 
             using var db = new DbLoger();
             var query = from c in db.Characters select c;

@@ -10,8 +10,18 @@ export class Login extends Component {
         this.state = { events: [], username: "", password: "", error: false };
     }
 
-    componentDidMount() {
+    async componentDidMount() {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username: this.state.username, password: this.state.password })
+        };
 
+        const response = await fetch('api/account/login', requestOptions);
+        const data = await response.json();
+        if (response.status === 200 && data.message === undefined) {
+            this.props.history.push("");
+        } 
     }
 
     validateForm() {

@@ -1,9 +1,11 @@
-﻿using System.Security.Cryptography;
+﻿using System.Runtime.InteropServices.ComTypes;
+using System.Security.Cryptography;
 using System.Text;
 using AdminControlPanel.Controllers.RequestModels;
 using AdminControlPanel.Database;
 using AdminControlPanel.Database.Models;
 using AdminControlPanel.Handler;
+using LinqToDB;
 using Microsoft.AspNetCore.Mvc;
 using Org.BouncyCastle.Asn1.Crmf;
 
@@ -19,35 +21,46 @@ namespace AdminControlPanel.Controllers
         {
             try
             {
-                string userToken = GetTempIdFromAccount(data.username, data.password);
-                
+                if (AuthenticationHandler.IsAutherised(HttpContext.Request))
+                    return Ok(new { });
+
+                string userToken = GetTempIdFromAccount(data);
+
                 AuthenticationHandler.SetAuthCookie(HttpContext.Response, userToken);
             }
-            catch
+            catch (Exception e)
             {
-                return Ok(new {message = "No User Found"});
+                return Ok(new { message = e.Message });
             }
 
-            return Ok(new {});
+            return Ok(new { });
+        }
+
+        private static string GetTempIdFromAccount(PostLogin data)
+        {
+            return GetTempIdFromAccount(data.username, data.password);
         }
 
         private static string GetTempIdFromAccount(string username, string password)
         {
             using var db = new DbLoger();
-            foreach (var account in db.Accounts)
-            {
-                if (account.Username == username && account.Password == password)
-                {
-                    if (account.TempId == null)
-                    {
-                        account.TempId = ComputeSha256Hash(username + DateTime.Now.Ticks);
-                    }
 
-                    return account.TempId;
-                }
-            }
+            Accounts? account = db.Accounts.FirstOrDefault(a => a.Username == username && a.Password == password);
 
-            throw new Exception("User not found");
+            if (account == null)
+                throw new Exception("User not found");
+
+            if (account.TempId != null)
+                return account.TempId;
+
+
+            string newTempId = ComputeSha256Hash(username + DateTime.Now.Ticks);
+
+            db.Accounts.Where(a => a == account)
+                        .Set(a => a.TempId, newTempId)
+                        .Update();
+
+            return newTempId;
         }
 
         private static string ComputeSha256Hash(string rawData)

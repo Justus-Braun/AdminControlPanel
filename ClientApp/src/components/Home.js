@@ -66,15 +66,12 @@ export class Home extends Component {
   }
 
   async fetchData(fetchDomain) {
-    console.log(fetchDomain)
     this.setState({ loading: true })
     const response = await fetch(fetchDomain);
-    if (response.status === 400) {
+    const data = await response.json();
+    if (data.message === 'login') {
       this.props.history.push("login");
     }
-    console.log(response);
-    const data = await response.json();
-    console.log(data);
     this.setState({ events: data, loading: false });
   }
 }
